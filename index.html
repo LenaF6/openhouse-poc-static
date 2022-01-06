@@ -62,21 +62,27 @@
       });
       // scale canvas correctly once on start
 
-      // update canvas size functions
+      // update canvas size
       var refreshCanvas = function(){
-        var isMobile = window.matchMedia("(max-width: 640px)").matches
         var newWidth = $( ".webgl-content" ).width();
         var newHeight = (9/16) * newWidth;
-        // Update canvas to inner window width
-        // Test on mobile
         $("#unity-canvas").width(newWidth);
         $("#unity-canvas").height(newHeight);
-
+        console.log($("#unity-canvas"))
       };
+
+      console.log($("#unity-canvas"))
+
       $(function() {
+        // scale canvas correctly once on start
         refreshCanvas();
       });
-      
+
+      // on window resize, apply width to game
+      $( window ).resize(function() {
+        refreshCanvas();
+      });
+
     </script>
   </body>
 </html>
