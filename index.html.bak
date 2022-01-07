@@ -19,6 +19,7 @@
         </div>
       </div>
     </div> </div>
+    <script src="Build/UnityLoader.js"></script>
     <script>
 
       // start unity
@@ -65,7 +66,7 @@
       var refreshCanvas = function(){
         var isMobile = window.matchMedia("(max-width: 640px)").matches
         var newWidth = $( ".webgl-content" ).width();
-        var newHeight = (9/16) * newWidth;
+        var newHeight = $( ".webgl-content" ).height();
         // Update canvas to inner window width
         // Test on mobile
         $("#unity-canvas").width(newWidth);
