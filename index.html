@@ -63,15 +63,13 @@
 
       // update canvas size functions
       var refreshCanvas = function(){
-        var isMobile = window.matchMedia("(max-width: 640px)").matches
-        var newWidth = $( ".webgl-content" ).width();
-        var newHeight = $( ".webgl-content" ).height();
-        // Update canvas to inner window width
+        //var isMobile = window.matchMedia("(max-width: 640px)").matches
         // Test on mobile
-        $("#unity-canvas").width(newWidth);
-        $("#unity-canvas").height(newHeight);
+        $("#unity-canvas").width(window.innerWidth - 15);
+        $("#unity-canvas").height(window.innerHeight - 115);
 
       };
+
       $(function() {
         refreshCanvas();
       });
