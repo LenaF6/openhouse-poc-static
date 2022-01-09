@@ -41,6 +41,13 @@
       var loadingBar = document.querySelector("#unity-loading-bar");
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
 
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        container.className = "unity-mobile";
+        config.devicePixelRatio = 1;
+      } else {
+        canvas.style.width = "960px";
+        canvas.style.height = "600px";
+      }
       loadingBar.style.display = "block";
 
       var script = document.createElement("script");
@@ -66,7 +73,7 @@
       var refreshCanvas = function(){
         var isMobile = window.matchMedia("(max-width: 640px)").matches
         var newWidth = $( ".webgl-content" ).width();
-        var newHeight = $( ".webgl-content" ).height();
+        var newHeight = (9/16) * newWidth;
         // Update canvas to inner window width
         // Test on mobile
         $("#unity-canvas").width(newWidth);
