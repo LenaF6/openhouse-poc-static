@@ -3,36 +3,32 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Unity WebGL Player | HGK_openhouse</title>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body style="text-align: center; background-color: transparent; margin: 0; padding: 0">
-  <div class="wrapper-rotate">
     <div class="webgl-content">
-      <div id="unity-container" class="unity-desktop">
-        <canvas id="unity-canvas" style="width: 100vw; height: 100vh; background: #001A72;"> </canvas>
-        <div id="unity-loading-bar">
-          <div id="unity-logo"></div>
-          <div id="unity-progress-bar-empty">
-            <div id="unity-progress-bar-full"></div>
-          </div>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" style="width: 100vw; height: 100vh; background: #3C1053;"> </canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
         </div>
       </div>
-    </div>
-  </div>
-  
+    </div> </div>
     <script>
 
       // start unity
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/exports.loader.js";
+      var loaderUrl = buildUrl + "/230119_OH_insta.loader.js";
       var config = {
-        dataUrl: buildUrl + "/exports.data.unityweb",
-        frameworkUrl: buildUrl + "/exports.framework.js.unityweb",
-        codeUrl: buildUrl + "/exports.wasm.unityweb",
+        dataUrl: buildUrl + "/230119_OH_insta.data.unityweb",
+        frameworkUrl: buildUrl + "/230119_OH_insta.framework.js.unityweb",
+        codeUrl: buildUrl + "/230119_OH_insta.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "HGK_openhouse",
@@ -60,28 +56,32 @@
       document.body.appendChild(script);
 
       // update on resize
-      $(window).resize(async function() {
-        await refreshCanvas();
-      });
       // scale canvas correctly once on start
+
+      /* addEventListener("resize", async () => {
+        await refreshCanvas();
+      }); */
+
+      /* addEventListener("orientationchange", async () => {
+        // await refreshCanvas();
+      }); */
 
       // update canvas size functions
       const refreshCanvas = function(){
-        var isMobile = window.matchMedia("(max-width: 520px)").matches
-        var newWidth = isMobile ? window.innerHeight : window.innerWidth;
-        var newHeight = isMobile ? window.innerWidth : window.innerHeight;
-        $("#unity-canvas").width(newWidth);
-        $("#unity-canvas").height(newHeight);
+        const isMobile = window.matchMedia("(max-width: 520px)").matches;
+        const newWidth = isMobile ? window.innerHeight : window.innerWidth;
+        const newHeight = isMobile ? window.innerWidth : window.innerHeight;
+        document.body.querySelector("#unity-canvas").style.width = newWidth + 'px';
+        document.body.querySelector("#unity-canvas").style.height = newHeight + 'px';
 
-        // if (isMobile) {
-        //     document.querySelector('.wrapper-rotate"').style.transform = 'rotate(90deg)'
-        // } else {
-        //     document.querySelector('.wrapper-rotate"').style.transform = 'rotate(0)'
-        // }
+        /* if (isMobile) {
+          document.querySelector('.wrapper-rotate').style.transform = 'rotate(90deg)'
+         } else {
+          document.querySelector('.wrapper-rotate').style.transform = 'rotate(0)'
+         } */
       };
-      $(function() {
-        refreshCanvas();
-      });
+
+      window.dispatchEvent(new Event(refreshCanvas));
 
     </script>
   </body>
